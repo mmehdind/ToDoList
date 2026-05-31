@@ -1,0 +1,282 @@
+@model TodoList.ViewModels.RegisterViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ثبت نام</title>
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-darker: #111827;
+            --card-bg: rgba(17, 24, 39, 0.92);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --accent: #facc15;
+            --accent-hover: #eab308;
+            --input-bg: #0b1220;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background:
+                radial-gradient(circle at top, rgba(250, 204, 21, 0.12), transparent 30%),
+                linear-gradient(135deg, var(--bg-dark), var(--bg-darker));
+            color: var(--text-main);
+            font-family: Vazirmatn, IRANSans, Tahoma, sans-serif;
+        }
+
+        .register-card {
+            width: 100%;
+            max-width: 560px;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            background: var(--card-bg);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .register-header {
+            padding: 32px 32px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .register-logo {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            margin-bottom: 16px;
+        }
+
+        .register-title {
+            margin: 0;
+            font-weight: 800;
+            color: var(--text-main);
+            font-size: 1.6rem;
+        }
+
+        .register-subtitle {
+            margin: 10px 0 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .register-body {
+            padding: 28px 32px 32px;
+        }
+
+        .form-label {
+            color: var(--text-main);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control,
+        .form-select {
+            background-color: var(--input-bg);
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            padding: 0.85rem 1rem;
+            box-shadow: none;
+        }
+
+        .form-control::placeholder {
+            color: #94a3b8;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background-color: var(--input-bg);
+            color: var(--text-main);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 0.2rem rgba(250, 204, 21, 0.12);
+        }
+
+        .input-group .form-control {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .input-group .btn {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background-color: #111827;
+            color: #e5e7eb;
+        }
+
+        .input-group .btn:hover {
+            background-color: #1f2937;
+            color: #fff;
+        }
+
+        .btn-register {
+            background-color: var(--accent);
+            border: none;
+            color: #111827;
+            font-weight: 700;
+            padding: 0.9rem 1rem;
+            border-radius: 14px;
+            transition: 0.2s ease;
+        }
+
+        .btn-register:hover {
+            background-color: var(--accent-hover);
+            color: #111827;
+        }
+
+        .small-links {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .small-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .small-links a:hover {
+            text-decoration: underline;
+        }
+
+        .text-danger {
+            color: #f87171 !important;
+        }
+
+        @@media (max-width: 576px) {
+            .register-header,
+            .register-body {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .register-card {
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card register-card">
+        <div class="register-header">
+            <img src="~/images/logo.png" alt="Logo" class="register-logo" />
+            <h3 class="register-title">ایجاد حساب کاربری</h3>
+            <p class="register-subtitle">برای شروع، فرم زیر را تکمیل کنید</p>
+        </div>
+
+        <div class="register-body">
+            <form asp-action="Register" method="post">
+                <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="UserName" class="form-label">نام کاربری</label>
+                    <input asp-for="UserName" class="form-control" placeholder="نام کاربری" />
+                    <span asp-validation-for="UserName" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">ایمیل</label>
+                    <input asp-for="Email" class="form-control" placeholder="example@email.com" />
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PhoneNumber" class="form-label">شماره موبایل</label>
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="09*********" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Gender" class="form-label">جنسیت</label>
+                    <select asp-for="Gender" class="form-select">
+                        <option value="">انتخاب کنید</option>
+                        <option value="1">مرد</option>
+                        <option value="2">زن</option>
+                        <option value="3">سایر</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">رمز عبور</label>
+                    <div class="input-group">
+                        <input asp-for="Password" id="passwordInput" type="password" class="form-control" placeholder="رمز عبور" />
+                        <button class="btn" type="button" id="togglePassword">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ConfirmPassword" class="form-label">تکرار رمز عبور</label>
+                    <div class="input-group">
+                        <input asp-for="ConfirmPassword" id="confirmPasswordInput" type="password" class="form-control" placeholder="تکرار رمز عبور" />
+                        <button class="btn" type="button" id="toggleConfirmPassword">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn btn-register w-100">ثبت نام</button>
+
+                <div class="text-center mt-4 small-links">
+                    قبلاً حساب دارید؟
+                    <a asp-action="Login" asp-controller="Account">ورود کنید</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('passwordInput');
+        const icon1 = togglePassword.querySelector('i');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            icon1.classList.toggle('bi-eye');
+            icon1.classList.toggle('bi-eye-slash');
+        });
+
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+        const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+        const icon2 = toggleConfirmPassword.querySelector('i');
+
+        toggleConfirmPassword.addEventListener('click', function () {
+            const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPasswordInput.setAttribute('type', type);
+            icon2.classList.toggle('bi-eye');
+            icon2.classList.toggle('bi-eye-slash');
+        });
+    </script>
+</body>
+</html>

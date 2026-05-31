@@ -1,0 +1,147 @@
+﻿@{
+    ViewData["Title"] = "خوش آمدید";
+}
+
+<div class="hero-section">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            مدیریت هوشمند کارها
+        </div>
+
+        <h1>
+            کارهات رو سازماندهی کن،
+            <span>بهره‌وری رو افزایش بده</span>
+        </h1>
+
+        <p>
+            یک ابزار ساده و سریع برای مدیریت تسک‌ها،
+            پیگیری پیشرفت و تمرکز روی اهداف روزانه.
+        </p>
+
+        <div class="hero-actions">
+
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <a asp-controller="Dashboard"
+                   asp-action="Index"
+                   class="primary-btn">
+
+                    ورود به پنل کاربری
+
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Account"
+                   asp-action="Register"
+                   class="primary-btn">
+
+                    شروع رایگان
+
+                </a>
+
+                <a asp-controller="Account"
+                   asp-action="Login"
+                   class="secondary-btn">
+
+                    ورود
+
+                </a>
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+    body {
+        background: #0f172a;
+        color: white;
+        font-family: 'Vazirmatn', sans-serif;
+    }
+
+    .hero-section {
+        min-height: 85vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .hero-content {
+        max-width: 850px;
+    }
+
+    .hero-badge {
+        display: inline-block;
+        padding: 10px 18px;
+        border-radius: 50px;
+        background: rgba(99,102,241,0.15);
+        border: 1px solid rgba(99,102,241,0.3);
+        color: #a5b4fc;
+        margin-bottom: 25px;
+        font-size: 14px;
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        line-height: 1.4;
+        margin-bottom: 25px;
+    }
+
+    .hero-content h1 span {
+        color: #818cf8;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        color: #94a3b8;
+        max-width: 650px;
+        margin: 0 auto 40px;
+        line-height: 2;
+    }
+
+    .hero-actions {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .primary-btn {
+        text-decoration: none;
+        background: linear-gradient(135deg,#6366f1,#8b5cf6);
+        color: white;
+        padding: 14px 32px;
+        border-radius: 14px;
+        font-weight: 700;
+        transition: .3s;
+    }
+
+    .primary-btn:hover {
+        transform: translateY(-3px);
+        color: white;
+    }
+
+    .secondary-btn {
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,.15);
+        color: white;
+        transition: .3s;
+    }
+
+    .secondary-btn:hover {
+        background: rgba(255,255,255,.05);
+        color: white;
+    }
+
+</style>
