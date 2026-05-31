@@ -5,6 +5,11 @@ using TodoList.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// تنظیم پورت 80
+builder.WebHost.UseUrls("http://0.0.0.0:80");
+
+var app = builder.Build();
+
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
