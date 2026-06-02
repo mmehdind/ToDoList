@@ -1,0 +1,21 @@
+@using TodoList.ViewModels
+@model List<TaskViewModel>
+
+<section class="tasks-section">
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="empty-state">
+            هیچ تسکی برای نمایش وجود ندارد 🚀
+        </div>
+    }
+    else
+    {
+        foreach (var task in Model)
+        {
+            <partial name="~/Views/Dashboard/Partials/_TaskCard.cshtml"
+                     model="task" />
+        }
+    }
+
+</section>

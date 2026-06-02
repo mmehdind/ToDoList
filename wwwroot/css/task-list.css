@@ -1,0 +1,16 @@
+.tasks-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+    color: #94a3b8;
+    font-size: 14px;
+    border: 1px solid rgba(255,255,255,0.06);
+}

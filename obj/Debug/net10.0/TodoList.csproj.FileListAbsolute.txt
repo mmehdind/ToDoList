@@ -2682,7 +2682,6 @@ D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\a3ygkwa5zy-{0}-
 D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\nezrqnk58p-{0}-muycvpuwrr-muycvpuwrr.gz
 D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\v0zgfp0y55-{0}-87fc7y1x7t-87fc7y1x7t.gz
 D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\yfc7ypekbg-{0}-mlv21k5csn-mlv21k5csn.gz
-D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\0hqmqee869-{0}-b9sayid5wm-b9sayid5wm.gz
 D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\1k0zbp5uzg-{0}-61n19gt1b8-61n19gt1b8.gz
 D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\0eo3jffazr-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\oahb4zkhaz-{0}-qagmcfajms-qagmcfajms.gz
@@ -4883,3 +4882,13 @@ D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\refint\TodoList.dll
 D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\TodoList.pdb
 D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\TodoList.genruntimeconfig.cache
 D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\ref\TodoList.dll
+D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\gp7dn361uo-{0}-9bf2alz95f-9bf2alz95f.gz
+D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\hq0yuh4bfv-{0}-zo7c93xcwi-zo7c93xcwi.gz
+D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\uvpyfz9df1-{0}-czuuqcx7ij-czuuqcx7ij.gz
+D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\16lkinlldz-{0}-5z1yniur0e-5z1yniur0e.gz
+D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\0hqmqee869-{0}-9sx7xowr9k-9sx7xowr9k.gz
+D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\qui9bxpqo8-{0}-tkxqlrezz1-tkxqlrezz1.gz
+D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\0iwsbfuc25-{0}-khh1k3oev1-khh1k3oev1.gz
+D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\8wvbca5jp8-{0}-5mwbs6h97l-5mwbs6h97l.gz
+D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\9oyilos7aw-{0}-mnqqp7ribg-mnqqp7ribg.gz
+D:\work\cp\mySites\TodoListDatabase\obj\Debug\net10.0\compressed\fzvdg0xy3g-{0}-119o41662x-119o41662x.gz

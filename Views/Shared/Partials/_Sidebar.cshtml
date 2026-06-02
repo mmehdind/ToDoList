@@ -1,0 +1,44 @@
+@model TodoList.ViewModels.SidebarViewModel
+
+<aside class="sidebar">
+
+    <!-- Header -->
+    <div class="sidebar-header">
+        <h3>TodoList</h3>
+        <span>@Model.FullName</span>
+    </div>
+
+    <!-- Menu -->
+    <nav class="sidebar-menu">
+
+        <a asp-controller="Dashboard"
+           asp-action="Index"
+           class="menu-item">
+            🏠 داشبورد
+        </a>
+
+        <a asp-controller="Task"
+           asp-action="Index"
+           class="menu-item">
+            📝 تسک‌ها
+        </a>
+
+        <a asp-controller="Category"
+           asp-action="Index"
+           class="menu-item">
+            📁 دسته‌بندی‌ها
+        </a>
+
+        <a href="/Profile" class="menu-item">
+            👤 پروفایل
+        </a>
+
+        <a asp-controller="Account"
+           asp-action="Logout"
+           class="menu-item logout">
+            🚪 خروج
+        </a>
+
+    </nav>
+
+</aside>

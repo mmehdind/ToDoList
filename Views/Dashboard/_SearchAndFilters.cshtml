@@ -1,0 +1,42 @@
+@model TodoList.ViewModels.DashboardViewModel
+
+<section class="filters-section">
+
+    <!-- Search -->
+    <form method="get" asp-controller="Dashboard" asp-action="Index" class="search-box">
+
+        <input type="text"
+               name="searchTerm"
+               value="@Model.SearchTerm"
+               placeholder="جستجو در تسک‌ها..." />
+
+        <button type="submit">🔍</button>
+
+    </form>
+
+    <!-- Quick Filters -->
+    <div class="quick-filters">
+
+        <a href="/Dashboard?filter=all"
+           class="filter-btn">
+            همه
+        </a>
+
+        <a href="/Dashboard?filter=inprogress"
+           class="filter-btn">
+            در حال انجام
+        </a>
+
+        <a href="/Dashboard?filter=completed"
+           class="filter-btn">
+            انجام شده
+        </a>
+
+        <a href="/Dashboard?filter=canceled"
+           class="filter-btn">
+            لغو شده
+        </a>
+
+    </div>
+
+</section>

@@ -1,0 +1,25 @@
+@model TodoList.ViewModels.DashboardViewModel
+
+<section class="stats-section">
+
+    <div class="stat-card">
+        <div class="stat-number">@Model.TotalTasks</div>
+        <div class="stat-label">کل تسک‌ها</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-number">@Model.CompletedTasks</div>
+        <div class="stat-label">انجام شده</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-number">@Model.InProgressTasks</div>
+        <div class="stat-label">در حال انجام</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-number">@Model.TodayTasks</div>
+        <div class="stat-label">امروز</div>
+    </div>
+
+</section>

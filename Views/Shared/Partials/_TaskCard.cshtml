@@ -1,0 +1,91 @@
+@using TodoList.Enums
+@using TodoList.ViewModels
+@model TaskViewModel
+
+<div class="task-card"
+    onclick="openEditTaskModal(@Model.Id)">
+
+    <!-- Color bar -->
+    <div class="task-color-bar"
+         style="background:@Model.CategoryColor">
+    </div>
+
+    <!-- Main content -->
+    <div class="task-body">
+
+        <div class="task-header">
+
+            <h3 class="task-title">
+                @Model.Title
+            </h3>
+
+            <span class="task-status @Model.Status.ToString().ToLower()">
+
+                @switch (Model.Status)
+                {
+                    case MyTaskStatus.InProgress:
+                        <text>⚡ در حال انجام</text>
+                        break;
+
+                    case MyTaskStatus.Completed:
+                        <text>✅ انجام شده</text>
+                        break;
+
+                    case MyTaskStatus.Canceled:
+                        <text>❌ لغو شده</text>
+                        break;
+                }
+
+            </span>
+
+        </div>
+
+        <p class="task-description">
+            @Model.Description
+        </p>
+
+        <div class="task-meta">
+
+            <span>
+                📁 @Model.CategoryName
+            </span>
+
+            <span>
+                📅 @(Model.DueDate == default
+                    ? "بدون تاریخ"
+                    : Model.DueDate.ToString("yyyy/MM/dd"))
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- Actions -->
+    <div class="task-actions"
+    onclick="openEditTaskModal(@Model.Id)">
+
+        @if (Model.Status != MyTaskStatus.Completed)
+        {
+            <form asp-action="Complete"
+                  asp-controller="Task"
+                  method="post"
+                  onclick="event.stopPropagation()">
+
+                <input type="hidden" name="id" value="@Model.Id" />
+
+                <button type="submit" class="btn-action complete">
+                    ✔
+                </button>
+
+            </form>
+        }
+
+        <button type="button"
+                class="btn-action delete"
+                onclick="openDeleteModal(@Model.Id, event)">
+            🗑
+        </button>
+
+    </div>
+
+</div>

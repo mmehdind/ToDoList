@@ -12,6 +12,7 @@ namespace TodoList.Data
         }
 
         public DbSet<TaskItem> TaskItem { get; set; }
+        public DbSet<Category> Category { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

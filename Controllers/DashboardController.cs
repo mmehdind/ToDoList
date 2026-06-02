@@ -6,7 +6,8 @@ using TodoList.ViewModels;
 using TodoList.Data;
 using Microsoft.Extensions.Configuration.UserSecrets;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
+using TodoList.Enums;
+using TodoList.StaticData;
 
 namespace TodoList.Controllers
 {
@@ -30,51 +31,53 @@ namespace TodoList.Controllers
         }
         
 
-        // public IActionResult Index()
-        // {
-        //     return View();
-        // }
-
         public async Task<IActionResult> Index()
-        {
+{
             var user = await GetCurrentUser();
 
-
-            var fullName = string.IsNullOrWhiteSpace(user.FirstName) || string.IsNullOrWhiteSpace(user.LastName) ? user.UserName : $"{user.FirstName} {user.LastName}";
-
-            // var tasks = new List<TaskItem> 
-            // {
-            //      new TaskItem 
-            //     {
-            //          Title = "تکمیل پروژه MVC",
-            //           Description = "اتصال کامل داشبورد",
-            //            IsCompleted = false 
-            //     }, 
-
-            //     new TaskItem 
-            //     { 
-            //         Title = "ساخت فرم افزودن تسک",
-            //          Description = "طراحی صفحه Create",
-            //           IsCompleted = true 
-            //     } 
-            // }; 
-
             var tasks = await _context.TaskItem
-            .Where(x => x.UserId == user.Id)
-            .OrderByDescending(x => x.CreatedAt)
-            .ToListAsync();
+                .Include(x => x.Category)
+                .Where(x => x.UserId == user.Id)
+                .OrderByDescending(x => x.CreatedAt)
+                .ToListAsync();
 
             var model = new DashboardViewModel
-            { 
-                FullName = fullName,
+            {
+                FullName = string.IsNullOrWhiteSpace(user.FirstName)
+                    ? user.UserName
+                    : $"{user.FirstName} {user.LastName}",
+
                 TotalTasks = tasks.Count,
-                CompletedTasks = tasks.Count(x => x.IsCompleted),
-                PendingTasks = tasks.Count(x => !x.IsCompleted),
-                RecentTasks = tasks 
+                CompletedTasks = tasks.Count(x => x.Status == MyTaskStatus.Completed),
+                InProgressTasks = tasks.Count(x => x.Status == MyTaskStatus.InProgress),
+                TodayTasks = tasks.Count(x => x.DueDate.Date == DateTime.Today),
+
+                Tasks = tasks.Select(task => new TaskViewModel
+                {
+                    Id = task.Id,
+                    Title = task.Title,
+                    Description = task.Description,
+                    DueDate = task.DueDate,
+
+                    Status = task.Status,
+
+                    CategoryName = task.Category?.Name ?? "بدون دسته‌بندی",
+
+                    CategoryColor =
+                        task.Category == null
+                            ? "#64748B"
+                            : TodoList.StaticData.CategoryColors.Colors
+                                .First(x => x.Id == task.Category.ColorIndex)
+                                .HexColor
+                }).ToList(),
+
+                Categories = new List<CategoryViewModel>() // ❗ مهم: Sidebar دیگر استفاده نمی‌کند
             };
 
             return View(model);
-        }
+}
+
+        
 
         [HttpPost]
         public async Task<IActionResult> CreateTask (CreateTaskViewModel model)
@@ -93,6 +96,10 @@ namespace TodoList.Controllers
 
                 IsCompleted = false,
                 CreatedAt = DateTime.Now,
+                Status = MyTaskStatus.InProgress,
+
+                DueDate = model.DueDate,
+                CategoryId = model.CategoryId,
 
                 UserId = user.Id
             };

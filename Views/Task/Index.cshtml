@@ -1,0 +1,238 @@
+@using TodoList.Enums
+@using TodoList.ViewModels
+@model TaskIndexViewModel
+
+<div class="task-layout">
+
+    <!-- Sidebar -->
+    @{
+            var sidebarModel = new SidebarViewModel
+            {
+                FullName = User.Identity?.Name ?? ""
+            };
+        }
+
+    <partial name="~/Views/Shared/Partials/_Sidebar.cshtml"
+            model="sidebarModel" />
+
+    <main class="tasks-page">
+
+        <!-- Header -->
+        <div class="tasks-header">
+
+            <div>
+                <h1>تسک‌ها</h1>
+                <p>مدیریت تمام تسک‌های شما</p>
+            </div>
+
+            <button class="add-task-btn"
+                    onclick="openCreateTaskModal()">
+                + تسک جدید
+            </button>
+
+        </div>
+
+        <!-- Search -->
+        <form method="get" class="tasks-search">
+            <input type="text"
+                   name="searchTerm"
+                   value="@Model.SearchTerm"
+                   placeholder="جستجو در تسک‌ها..." />
+        </form>
+
+        <!-- Filters -->
+        <div class="status-filters">
+
+            <a asp-action="Index"
+               class="filter-item @(Model.Status == null ? "active" : "")">
+                همه
+            </a>
+
+            <a asp-action="Index" asp-route-status="InProgress"
+               class="filter-item @(Model.Status == MyTaskStatus.InProgress ? "active" : "")">
+                در حال انجام
+            </a>
+
+            <a asp-action="Index" asp-route-status="Completed"
+               class="filter-item @(Model.Status == MyTaskStatus.Completed ? "active" : "")">
+                انجام شده
+            </a>
+
+            <a asp-action="Index" asp-route-status="Canceled"
+               class="filter-item @(Model.Status == MyTaskStatus.Canceled ? "active" : "")">
+                لغو شده
+            </a>
+
+        </div>
+
+        <!-- Task List -->
+        <div class="tasks-container">
+
+            @if (Model.Tasks == null || !Model.Tasks.Any())
+            {
+                <div class="empty-state">
+                    هیچ تسکی وجود ندارد 🚀
+                </div>
+            }
+            else
+            {
+                @foreach (var task in Model.Tasks)
+                {
+                    <partial name="~/Views/Shared/Partials/_TaskCard.cshtml"
+                             model="task" />
+                }
+            }
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- ================= CREATE MODAL ================= -->
+<div id="createTaskModal" class="modal-overlay">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+            <h2>ساخت تسک جدید</h2>
+            <button class="close-modal-btn" onclick="closeCreateTaskModal()">✕</button>
+        </div>
+
+        <form asp-controller="Task" asp-action="Create" method="post">
+
+            <input name="Title" placeholder="عنوان" required />
+            <input name="Description" placeholder="توضیحات" />
+
+            <select name="CategoryId" required>
+                <option value="">انتخاب دسته‌بندی</option>
+
+                @foreach (var cat in Model.Categories)
+                {
+                    <option value="@cat.Id">@cat.Name</option>
+                }
+            </select>
+
+            <input type="date" name="DueDate" />
+
+            <button type="submit" class="submit-task-btn">
+                ساخت تسک
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ================= EDIT MODAL ================= -->
+<div id="editTaskModal" class="modal-overlay">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+            <h2>ویرایش تسک</h2>
+            <button class="close-modal-btn" onclick="closeEditTaskModal()">✕</button>
+        </div>
+
+        <form asp-controller="Task" asp-action="Edit" method="post">
+
+            <input type="hidden" id="editTaskId" name="Id" />
+
+            <input id="editTitle" name="Title" />
+            <input id="editDescription" name="Description" />
+
+            <select id="editCategory" name="CategoryId">
+                @foreach (var cat in Model.Categories)
+                {
+                    <option value="@cat.Id">@cat.Name</option>
+                }
+            </select>
+
+            <input type="date" id="editDueDate" name="DueDate" />
+
+            <select id="editStatus" name="Status">
+                <option value="InProgress">در حال انجام</option>
+                <option value="Completed">انجام شده</option>
+                <option value="Canceled">لغو شده</option>
+            </select>
+
+            <button type="submit" class="submit-task-btn">
+                ذخیره
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ================= DELETE MODAL ================= -->
+<div id="deleteTaskModal" class="modal-overlay">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+            <h2>حذف تسک</h2>
+            <button class="close-modal-btn" onclick="closeDeleteModal()">✕</button>
+        </div>
+
+        <p>آیا مطمئن هستی؟</p>
+
+        <form asp-controller="Task" asp-action="Delete" method="post">
+            <input type="hidden" id="deleteTaskId" name="id" />
+
+            <button type="submit" class="submit-task-btn danger">
+                حذف
+            </button>
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ================= JS ================= -->
+@section Scripts {
+<script>
+
+const tasks = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Tasks ?? new List<TaskViewModel>()));
+
+function openCreateTaskModal() {
+    document.getElementById("createTaskModal").classList.add("active");
+}
+
+function closeCreateTaskModal() {
+    document.getElementById("createTaskModal").classList.remove("active");
+}
+
+function openEditTaskModal(id) {
+
+    const task = tasks.find(x => x.Id === id);
+    if (!task) return;
+
+    document.getElementById("editTaskId").value = task.Id;
+    document.getElementById("editTitle").value = task.Title;
+    document.getElementById("editDescription").value = task.Description ?? "";
+    document.getElementById("editCategory").value = task.CategoryId;
+    document.getElementById("editDueDate").value = task.DueDate ? task.DueDate.split("T")[0] : "";
+    document.getElementById("editStatus").value = task.Status;
+
+    document.getElementById("editTaskModal").classList.add("active");
+}
+
+function closeEditTaskModal() {
+    document.getElementById("editTaskModal").classList.remove("active");
+}
+
+function openDeleteModal(id, event) {
+    event.stopPropagation();
+    document.getElementById("deleteTaskId").value = id;
+    document.getElementById("deleteTaskModal").classList.add("active");
+}
+
+function closeDeleteModal() {
+    document.getElementById("deleteTaskModal").classList.remove("active");
+}
+
+</script>
+}

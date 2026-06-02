@@ -1,0 +1,194 @@
+.tasks-page {
+    padding: 40px;
+}
+
+.tasks-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.tasks-header p {
+    color: #94a3b8;
+}
+
+.add-task-btn {
+    border: none;
+
+    background: #6366F1;
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+}
+
+.tasks-search {
+    margin-bottom: 25px;
+}
+
+.tasks-search input {
+    width: 100%;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    border: none;
+
+    background: rgba(255,255,255,.05);
+
+    color: white;
+}
+
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.empty-state {
+    text-align: center;
+
+    padding: 50px;
+
+    background: rgba(255,255,255,.05);
+
+    border-radius: 16px;
+}
+
+.tasks-search form,
+.tasks-search {
+    width: 100%;
+}
+
+.tasks-search input {
+    width: 100%;
+
+    padding: 14px 18px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.05);
+
+    color: white;
+
+    font-size: 15px;
+}
+
+.tasks-search input:focus {
+    outline: none;
+
+    box-shadow: 0 0 0 3px rgba(99,102,241,.15);
+}
+
+.status-filters {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.filter-item {
+    padding: 10px 14px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    color: #cbd5e1;
+
+    background: rgba(255,255,255,.05);
+
+    transition: .2s;
+}
+
+.filter-item:hover {
+    background: rgba(255,255,255,.1);
+}
+
+.filter-item.active {
+    background: #6366F1;
+
+    color: white;
+}
+
+.task-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+}
+
+.sidebar {
+    direction: rtl;
+}
+
+.category-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.category-item:hover {
+    background: rgba(255,255,255,.05);
+}
+
+.active-category {
+    background: rgba(99,102,241,.25);
+}
+
+.tasks-page {
+    padding: 30px;
+    width: 100%;
+}
+
+.modal-box {
+    width: 500px;
+    max-width: 90%;
+    background: #111827;
+    border-radius: 18px;
+    padding: 24px;
+    border: 1px solid rgba(255,255,255,.08);
+    color: white;
+}
+
+.modal-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.modal-box input,
+.modal-box select,
+.modal-box textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.05);
+    color: white;
+}
+

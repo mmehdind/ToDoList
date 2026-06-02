@@ -1,0 +1,137 @@
+.task-card {
+    display: flex;
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: .2s;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.task-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,0.07);
+}
+
+/* Color bar */
+.task-color-bar {
+    width: 6px;
+}
+
+/* Body */
+.task-body {
+    flex: 1;
+    padding: 16px;
+}
+
+/* Header */
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-title {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Status */
+.task-status {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    color: #94a3b8;
+}
+
+/* Status colors */
+.task-status.inprogress {
+    color: #f59e0b;
+}
+
+.task-status.completed {
+    color: #22c55e;
+}
+
+.task-status.canceled {
+    color: #ef4444;
+}
+
+/* Description */
+.task-description {
+    margin-top: 8px;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+/* Meta */
+.task-meta {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+/* Actions */
+.task-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-action {
+    border: none;
+    background: rgba(255,255,255,0.05);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn-action:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* Specific buttons */
+.btn-action.complete {
+    color: #22c55e;
+}
+
+.btn-action.edit {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.btn-action.delete {
+    color: #ef4444;
+}
+
+.task-card {
+    cursor: pointer;
+    transition: .2s;
+}
+
+.task-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.25);
+}
+
+.btn-action {
+    transition: .2s;
+}
+
+.btn-action:hover {
+    transform: scale(1.1);
+}
+
+.filter-item.active,
+.category-item.active-category {
+    background: #6366F1;
+    color: white;
+}
+

@@ -1,14 +1,7 @@
 using Microsoft.AspNetCore.Identity;
+using TodoList.Enums;
 
 namespace TodoList.Models;
-
-
-public enum Gender
-{
-    Male = 1,
-    Female = 2,
-    Other = 3
-}
 
 public class ApplicationUser : IdentityUser
 {
